@@ -1,0 +1,193 @@
+city table:-
+CREATE TABLE City (
+    Id SERIAL PRIMARY KEY,
+    CountryId INT,
+    CityName VARCHAR(255),
+    FOREIGN KEY (CountryId) REFERENCES Country(Id)
+);
+INSERT INTO City (CountryId, CityName) VALUES 
+(1, 'Mumbai'),
+(1, 'Delhi'),
+(2, 'New York'),
+(2, 'Los Angeles'),
+(3, 'Berlin');
+
+MissionApplication table:-
+CREATE TABLE MissionApplication (
+    Id SERIAL PRIMARY KEY,
+    MissionId INT,
+    UserId INT,
+    AppliedDate TIMESTAMP,
+    Status BOOLEAN,
+    Sheet INT
+);
+INSERT INTO MissionApplication (MissionId, UserId, AppliedDate, Status, Sheet) VALUES 
+(101, 1001, '2025-05-28 10:00:00', true, 1),
+(102, 1002, '2025-05-27 15:30:00', false, 2),
+(103, 1003, '2025-05-26 09:15:00', true, 3);
+
+CREATE TABLE Missions (
+    Id SERIAL PRIMARY KEY,
+    MissionTitle VARCHAR(255),
+    MissionDescription TEXT,
+    MissionOrganisationName VARCHAR(255),
+    MissionOrganisationDetail TEXT,
+    CountryId INT,
+    CityId INT,
+    StartDate DATE,
+    EndDate DATE,
+    MissionType VARCHAR(100),
+    TotalSheets INT,
+    RegistrationDeadLine DATE,
+    MissionThemeId VARCHAR(100),
+    MissionSkillId VARCHAR(100),
+    MissionImages TEXT,
+    MissionDocuments TEXT,
+    MissionAvailability VARCHAR(100),
+    MissionVideoUrl TEXT,
+    
+    FOREIGN KEY (CountryId) REFERENCES Country(Id),
+    FOREIGN KEY (CityId) REFERENCES City(Id)
+);
+INSERT INTO Missions (
+    MissionTitle,
+    MissionDescription,
+    MissionOrganisationName,
+    MissionOrganisationDetail,
+    CountryId,
+    CityId,
+    StartDate,
+    EndDate,
+    MissionType,
+    TotalSheets,
+    RegistrationDeadLine,
+    MissionThemeId,
+    MissionSkillId,
+    MissionImages,
+    MissionDocuments,
+    MissionAvailability,
+    MissionVideoUrl
+) VALUES (
+    'Clean City Campaign',
+    'A mission to clean public places in the city.',
+    'Green Earth Org',
+    'An NGO working for environmental awareness and sanitation.',
+    1,                 -- Assuming 1 = India
+    1,                 -- Assuming 1 = Mumbai
+    '2025-06-01',
+    '2025-06-15',
+    'Environmental',
+    50,
+    '2025-05-30',
+    'Theme001',
+    'Skill001',
+    'cleaning.jpg',
+    'cleaning_guidelines.pdf',
+    'Full-time',
+    'https://example.com/mission-video'
+);
+
+CREATE TABLE MissionTheme (
+    Id SERIAL PRIMARY KEY,
+    ThemeName VARCHAR(255),
+    Status VARCHAR(50)
+);
+INSERT INTO MissionTheme (ThemeName, Status) VALUES
+('Environment', 'Active'),
+('Education', 'Active'),
+('Healthcare', 'Inactive'),
+('Community Development', 'Active');
+
+CREATE TABLE UserDetail (
+    Id SERIAL PRIMARY KEY,
+    UserId INT,
+    Name VARCHAR(100),
+    Surname VARCHAR(100),
+    EmployeeId VARCHAR(50),
+    Manager VARCHAR(100),
+    Title VARCHAR(100),
+    Department VARCHAR(100),
+    MyProfile TEXT,
+    WhyIVolunteer TEXT,
+    CountryId INT,
+    CityId INT,
+    Avilability VARCHAR(100),
+    LinkdInUrl TEXT,
+    MySkills TEXT,
+    UserImage TEXT,
+    Status BOOLEAN,
+    
+    FOREIGN KEY (CountryId) REFERENCES Country(Id),
+    FOREIGN KEY (CityId) REFERENCES City(Id)
+);
+INSERT INTO UserDetail (
+    UserId,
+    Name,
+    Surname,
+    EmployeeId,
+    Manager,
+    Title,
+    Department,
+    MyProfile,
+    WhyIVolunteer,
+    CountryId,
+    CityId,
+    Avilability,
+    LinkdInUrl,
+    MySkills,
+    UserImage,
+    Status
+) VALUES (
+    1001,
+    'John',
+    'Doe',
+    'EMP123',
+    'Jane Smith',
+    'Software Engineer',
+    'IT',
+    'Experienced developer interested in contributing to social causes.',
+    'I want to give back to the community through my skills.',
+    1,                -- Assuming CountryId 1 = India
+    1,                -- Assuming CityId 1 = Mumbai
+    'Weekends',
+    'https://linkedin.com/in/johndoe',
+    'Python, SQL, Communication',
+    'johndoe.jpg',
+    TRUE
+);
+
+CREATE TABLE userskills (
+    id INT PRIMARY KEY,
+    skill VARCHAR,
+    userid INT
+);
+INSERT INTO userskills (id, skill, userid)
+VALUES
+    (1, 'Programming', 1),
+    (2, 'Writing', 1);
+
+CREATE TABLE "user" (
+    id INT PRIMARY KEY,
+    firstname VARCHAR,
+    lastname VARCHAR,
+    phonenumber VARCHAR,
+    emailaddress VARCHAR,
+    usertype VARCHAR,
+    password VARCHAR
+);
+INSERT INTO "user" (id, firstname, lastname, phonenumber, emailaddress, usertype, password)
+VALUES
+    (1, 'A', 'Sharma', '1234567890', 'a@example.com', 'Admin', 'apass'),
+    (2, 'B', 'Patel', '2345678901', 'b@example.com', 'User', 'bpass'),
+    (3, 'C', 'Kohli', '3456789012', 'c@example.com', 'User', 'cpass');
+
+CREATE TABLE missionskill (
+    id INT PRIMARY KEY,
+    skillname VARCHAR,
+    status VARCHAR
+);
+INSERT INTO missionskill (id, skillname, status)
+VALUES
+    (1, 'Programming', 'Active'),
+    (2, 'Writing', 'Active'),
+    (3, 'Design', 'Inactive');
