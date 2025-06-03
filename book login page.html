@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>BookApp Login</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f2f6fc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .login-container {
+    background: white;
+    padding: 40px 30px 50px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    width: 360px;
+    text-align: center;
+    position: relative;
+  }
+
+  .login-container::before {
+    content: "📚";
+    font-size: 5rem;
+    position: absolute;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #4a90e2;
+  }
+
+  .login-container h2 {
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    text-align: left;
+    color: #555;
+    margin-bottom: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  input[type="text"], input[type="password"] {
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    border: 1.8px solid #ddd;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+  }
+
+  input[type="text"]:focus, input[type="password"]:focus {
+    border-color: #4a90e2;
+    outline: none;
+  }
+
+  .error-message {
+    color: #e04e4e;
+    font-size: 0.85rem;
+    margin-top: -16px;
+    margin-bottom: 12px;
+    text-align: left;
+    height: 18px;
+  }
+
+  button {
+    padding: 14px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    letter-spacing: 1px;
+  }
+
+  button:hover {
+    background: #357abd;
+  }
+</style>
+</head>
+<body>
+  <div class="login-container" role="main" aria-label="Book app login form">
+    <h2>Login to BookApp</h2>
+    <form id="loginForm" novalidate>
+      <label for="username">Username or Email</label>
+      <input type="text" id="username" name="username" autocomplete="username" required />
+      <div class="error-message" id="usernameError"></div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" required />
+      <div class="error-message" id="passwordError"></div>
+
+      <button type="submit">Log In</button>
+    </form>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const usernameInput = document.getElementById('username');
+    const passwordInput = document.getElementById('password');
+    const usernameError = document.getElementById('usernameError');
+    const passwordError = document.getElementById('passwordError');
+
+    function validateEmailOrUsername(value) {
+      // Simple email regex, or any non-empty string (for username)
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      return value.trim() !== '' && (emailRegex.test(value) || /^[a-zA-Z0-9._-]+$/.test(value));
+    }
+
+    loginForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      let valid = true;
+
+      // Validate username/email
+      if (!validateEmailOrUsername(usernameInput.value)) {
+        usernameError.textContent = 'Enter a valid username or email';
+        valid = false;
+      } else {
+        usernameError.textContent = '';
+      }
+
+      // Validate password (required and minimum 6 characters)
+      if (passwordInput.value.trim().length < 6) {
+        passwordError.textContent = 'Password must be at least 6 characters';
+        valid = false;
+      } else {
+        passwordError.textContent = '';
+      }
+
+      if (valid) {
+        // For demonstration, simply alert success - normally would call backend here
+        alert('Login successful!\n\nUsername/Email: ' + usernameInput.value);
+        // Clear form or redirect as needed here
+        loginForm.reset();
+      }
+    });
+  </script>
+</body>
+</html>
+
