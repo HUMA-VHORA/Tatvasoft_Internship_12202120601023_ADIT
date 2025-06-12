@@ -1,0 +1,7 @@
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.csproj.AssemblyReference.cache
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.GeneratedMSBuildEditorConfig.editorconfig
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.AssemblyInfoInputs.cache
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.AssemblyInfo.cs
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.csproj.CoreCompileInputs.cache
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.MvcApplicationPartsAssemblyInfo.cs
+D:\Huma\Internship\tatvasoft\Mission\Mission\obj\Debug\net8.0\Mission.MvcApplicationPartsAssemblyInfo.cache
