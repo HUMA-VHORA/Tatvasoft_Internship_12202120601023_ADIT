@@ -23,6 +23,8 @@ namespace Mission
                 app.UseSwaggerUI();
             }
 
+            app.UseHttpsRedirection();
+
             app.UseAuthorization();
 
 
