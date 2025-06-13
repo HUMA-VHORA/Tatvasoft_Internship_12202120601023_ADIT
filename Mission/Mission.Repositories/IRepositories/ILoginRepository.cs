@@ -1,4 +1,5 @@
-﻿using Mission.Entities.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Mission.Entities.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace Mission.Repositories.IRepositories
     public interface ILoginRepository
     {
         LoginUserResponseModel LoginUser(LoginUserRequestModel model);
-
-        Task<string> Register(RegisterUserModel model);
+        Task<string> RegisterUser(RegisterUserRequestModel registerUserRequest);
+        UserResponseModel LoginUserDetailById(int id);
+        Task<bool> LoginUserProfileUpdate(AddUserDetailsRequestModel requestModel);
     }
 }
